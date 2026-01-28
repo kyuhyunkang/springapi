@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: springboot-sns-sample
+  jpa:
+    show-sql: true
