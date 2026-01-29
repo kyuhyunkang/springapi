@@ -1,6 +1,7 @@
 package com.apiece.springboot_sns_sample.domain.user;
 
 import jakarta.persistence.*;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

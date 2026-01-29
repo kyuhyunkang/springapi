@@ -1,15 +1,17 @@
 package com.apiece.springboot_sns_sample.controller;
 
-import com.apiece.springboot_sns_sample.controller.dto.UserCreateRequest;
-import com.apiece.springboot_sns_sample.controller.dto.UserResponse;
-import com.apiece.springboot_sns_sample.domain.user.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.apiece.springboot_sns_sample.controller.dto.UserCreateRequest;
+import com.apiece.springboot_sns_sample.controller.dto.UserResponse;
+import com.apiece.springboot_sns_sample.domain.user.UserService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1/users")

@@ -13,4 +13,8 @@ public class UserException extends RuntimeException {
     public static UserException duplicateUsername(String username) {
         return new UserException("Username already exists: " + username);
     }
+
+    public static UserException notFoundByUsername(String username) {
+        return new UserException("User not found with username: " + username);
+    }
 }
