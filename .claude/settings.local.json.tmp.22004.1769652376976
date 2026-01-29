@@ -15,19 +15,7 @@
       "Bash(JAVA_HOME=\"C:\\\\Users\\\\user\\\\.jdks\\\\openjdk-25.0.2\" ./gradlew bootRun:*)",
       "Bash(./gradlew:*)",
       "Bash(ss:*)",
-      "Bash(redis-cli keys:*)",
-      "Bash(docker exec:*)",
-      "Bash(cmd.exe /C \"taskkill /F /PID 29572\")",
-      "Bash(cmd:*)",
-      "Bash(kill:*)",
-      "Bash(/c/Windows/System32/taskkill.exe /F /PID 29572)",
-      "Bash(wmic process:*)",
-      "Bash(powershell -Command:*)",
-      "Bash(docker-compose up:*)",
-      "Bash(docker-compose:*)",
-      "Bash(./user.sh)",
-      "Bash(./auth.sh:*)",
-      "Bash(./follow.sh:*)"
+      "Bash(redis-cli keys:*)"
     ]
   }
 }

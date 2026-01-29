@@ -27,6 +27,17 @@ public class UserService {
         return UserResponse.from(savedUser);
     }
 
+    public Long getUserIdByUsername(String username) {
+        return userRepository
+                .findByUsername(username)
+                .orElseThrow(() -> UserException.notFoundByUsername(username))
+                .getId();
+    }
+
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElseThrow(() -> UserException.notFound(userId));
+    }
+
     private void validateDuplicateUsername(String username) {
         if (userRepository.existsByUsername(username)) {
             throw UserException.duplicateUsername(username);
