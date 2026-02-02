@@ -36,3 +36,16 @@ CREATE TABLE follow_counts (
     CONSTRAINT uk_follow_counts_user_id UNIQUE (user_id),
     CONSTRAINT fk_follow_counts_user FOREIGN KEY (user_id) REFERENCES users (id)
 );
+
+-- likes
+CREATE TABLE likes (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    post_id BIGINT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL,
+    CONSTRAINT uk_likes_user_post UNIQUE (user_id, post_id)
+);
+
+CREATE INDEX idx_likes_post_id ON likes (post_id);

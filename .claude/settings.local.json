@@ -31,7 +31,19 @@
       "Bash(chmod:*)",
       "Bash(./reset.sh)",
       "Bash(PGPASSWORD=sns123 psql:*)",
-      "Bash(docker ps:*)"
+      "Bash(docker ps:*)",
+      "Bash(cat:*)",
+      "Bash(BASE_URL=\"http://localhost:8081\":*)",
+      "Bash(__NEW_LINE_0ee3b7c787c67ca7__ echo \"=== 1. Login ===\")",
+      "Bash(__NEW_LINE_0ee3b7c787c67ca7__ echo \"\")",
+      "Bash(__NEW_LINE_e06e42c8818b001d__ echo \"=== 1. Like Post ===\")",
+      "Bash(__NEW_LINE_e06e42c8818b001d__ echo \"=== 2. Check Like Status ===\")",
+      "Bash(__NEW_LINE_e06e42c8818b001d__ echo \"=== 3. Unlike Post ===\")",
+      "Bash(__NEW_LINE_e06e42c8818b001d__ echo \"=== 4. Check Like Status Again ===\")",
+      "Bash(__NEW_LINE_5ae4610c754d74a4__ echo \"=== 1. Login ===\")",
+      "Bash(__NEW_LINE_5ae4610c754d74a4__ echo \"\")",
+      "Bash(__NEW_LINE_05be63ae78c0584c__ echo \"=== 1. Login ===\")",
+      "Bash(__NEW_LINE_05be63ae78c0584c__ echo \"\")"
     ]
   }
 }

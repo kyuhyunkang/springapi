@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.apiece.springboot_sns_sample.domain.follow.FollowException;
+import com.apiece.springboot_sns_sample.domain.like.LikeException;
 import com.apiece.springboot_sns_sample.domain.post.PostException;
 import com.apiece.springboot_sns_sample.domain.quote.QuoteException;
 import com.apiece.springboot_sns_sample.domain.reply.ReplyException;
@@ -89,5 +90,20 @@ public class GlobalExceptionHandler {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse("ALREADY_REPOSTED", message));
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("REPOST_NOT_FOUND", message));
+    }
+
+    @ExceptionHandler(LikeException.AlreadyLikedException.class)
+    public ResponseEntity<ErrorResponse> handleAlreadyLikedException(LikeException.AlreadyLikedException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse("ALREADY_LIKED", e.getMessage()));
+    }
+
+    @ExceptionHandler(LikeException.NotLikedException.class)
+    public ResponseEntity<ErrorResponse> handleNotLikedException(LikeException.NotLikedException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("NOT_LIKED", e.getMessage()));
+    }
+
+    @ExceptionHandler(LikeException.class)
+    public ResponseEntity<ErrorResponse> handleLikeException(LikeException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("LIKE_ERROR", e.getMessage()));
     }
 }
