@@ -1,8 +1,10 @@
 package com.apiece.springboot_sns_sample.domain.follow;
 
-import com.apiece.springboot_sns_sample.domain.user.User;
 import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.apiece.springboot_sns_sample.domain.user.User;
 
 public interface FollowRepository extends JpaRepository<Follow, Long> {
 

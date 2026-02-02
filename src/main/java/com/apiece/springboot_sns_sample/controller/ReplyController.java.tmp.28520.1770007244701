@@ -1,0 +1,76 @@
+package com.apiece.springboot_sns_sample.controller;
+
+import com.apiece.springboot_sns_sample.controller.dto.PostResponse;
+import com.apiece.springboot_sns_sample.controller.dto.PostUpdateRequest;
+import com.apiece.springboot_sns_sample.controller.dto.ReplyCreateRequest;
+import com.apiece.springboot_sns_sample.domain.post.Post;
+import com.apiece.springboot_sns_sample.domain.reply.ReplyService;
+import com.apiece.springboot_sns_sample.domain.user.UserService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+public class ReplyController {
+
+    private final ReplyService replyService;
+    private final UserService userService;
+
+    @PostMapping("/api/replies")
+    public ResponseEntity<PostResponse> create(
+            @Valid @RequestBody ReplyCreateRequest request,
+            @AuthenticationPrincipal UserDetails userDetails
+    ) {
+        Long userId = getUserId(userDetails);
+        Post reply = replyService.create(request.content(), request.parentId(), userId);
+        return ResponseEntity.created(URI.create("/api/replies/" + reply.getId()))
+                .body(PostResponse.from(reply));
+    }
+
+    @GetMapping("/api/replies/{id}")
+    public ResponseEntity<PostResponse> findById(@PathVariable Long id) {
+        Post reply = replyService.findById(id);
+        return ResponseEntity.ok(PostResponse.from(reply));
+    }
+
+    @GetMapping("/api/posts/{postId}/replies")
+    public ResponseEntity<List<PostResponse>> findByParentId(@PathVariable Long postId) {
+        List<PostResponse> replies = replyService.findByParentId(postId)
+                .stream()
+                .map(PostResponse::from)
+                .toList();
+        return ResponseEntity.ok(replies);
+    }
+
+    @PutMapping("/api/replies/{id}")
+    public ResponseEntity<PostResponse> update(
+            @PathVariable Long id,
+            @RequestBody PostUpdateRequest request,
+            @AuthenticationPrincipal UserDetails userDetails
+    ) {
+        Long userId = getUserId(userDetails);
+        Post reply = replyService.update(id, request.content(), userId);
+        return ResponseEntity.ok(PostResponse.from(reply));
+    }
+
+    @DeleteMapping("/api/replies/{id}")
+    public ResponseEntity<Void> delete(
+            @PathVariable Long id,
+            @AuthenticationPrincipal UserDetails userDetails
+    ) {
+        Long userId = getUserId(userDetails);
+        replyService.delete(id, userId);
+        return ResponseEntity.noContent().build();
+    }
+
+    private Long getUserId(UserDetails userDetails) {
+        return userService.getUserIdByUsername(userDetails.getUsername());
+    }
+}

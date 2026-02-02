@@ -27,7 +27,11 @@
       "Bash(docker-compose:*)",
       "Bash(./user.sh)",
       "Bash(./auth.sh:*)",
-      "Bash(./follow.sh:*)"
+      "Bash(./follow.sh:*)",
+      "Bash(chmod:*)",
+      "Bash(./reset.sh)",
+      "Bash(PGPASSWORD=sns123 psql:*)",
+      "Bash(docker ps:*)"
     ]
   }
 }

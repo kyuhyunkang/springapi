@@ -28,9 +28,7 @@ public class UserService {
     }
 
     public Long getUserIdByUsername(String username) {
-        return userRepository
-                .findByUsername(username)
-                .orElseThrow(() -> UserException.notFoundByUsername(username))
+        return userRepository.findByUsername(username).orElseThrow(() -> UserException.notFoundByUsername(username))
                 .getId();
     }
 

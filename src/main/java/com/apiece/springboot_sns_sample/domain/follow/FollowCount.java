@@ -1,8 +1,10 @@
 package com.apiece.springboot_sns_sample.domain.follow;
 
+import jakarta.persistence.*;
+
 import com.apiece.springboot_sns_sample.domain.common.BaseEntity;
 import com.apiece.springboot_sns_sample.domain.user.User;
-import jakarta.persistence.*;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

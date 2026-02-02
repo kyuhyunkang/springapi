@@ -1,7 +1,8 @@
 package com.apiece.springboot_sns_sample.controller.dto;
 
-import com.apiece.springboot_sns_sample.domain.user.User;
 import java.util.List;
+
+import com.apiece.springboot_sns_sample.domain.user.User;
 
 public record FollowUserResponse(Long id, String username) {
     public static FollowUserResponse from(User user) {

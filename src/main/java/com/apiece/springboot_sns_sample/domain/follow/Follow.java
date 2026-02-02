@@ -1,16 +1,16 @@
 package com.apiece.springboot_sns_sample.domain.follow;
 
+import jakarta.persistence.*;
+
 import com.apiece.springboot_sns_sample.domain.common.BaseEntity;
 import com.apiece.springboot_sns_sample.domain.user.User;
-import jakarta.persistence.*;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(
-        name = "follows",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"follower_id", "following_id"}))
+@Table(name = "follows", uniqueConstraints = @UniqueConstraint(columnNames = {"follower_id", "following_id"}))
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Follow extends BaseEntity {

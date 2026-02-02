@@ -1,12 +1,15 @@
 package com.apiece.springboot_sns_sample.domain.follow;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.apiece.springboot_sns_sample.domain.user.User;
 import com.apiece.springboot_sns_sample.domain.user.UserException;
 import com.apiece.springboot_sns_sample.domain.user.UserRepository;
-import java.util.List;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,30 +54,20 @@ public class FollowService {
 
     public List<User> getFollowers(Long userId) {
         User user = findUserById(userId);
-        return followRepository.findByFollowing(user).stream()
-                .map(Follow::getFollower)
-                .toList();
+        return followRepository.findByFollowing(user).stream().map(Follow::getFollower).toList();
     }
 
     public List<User> getFollowees(Long userId) {
         User user = findUserById(userId);
-        return followRepository.findByFollower(user).stream()
-                .map(Follow::getFollowing)
-                .toList();
+        return followRepository.findByFollower(user).stream().map(Follow::getFollowing).toList();
     }
 
     public Long getFollowersCount(Long userId) {
-        return followCountRepository
-                .findByUserId(userId)
-                .map(FollowCount::getFollowersCount)
-                .orElse(0L);
+        return followCountRepository.findByUserId(userId).map(FollowCount::getFollowersCount).orElse(0L);
     }
 
     public Long getFolloweesCount(Long userId) {
-        return followCountRepository
-                .findByUserId(userId)
-                .map(FollowCount::getFolloweesCount)
-                .orElse(0L);
+        return followCountRepository.findByUserId(userId).map(FollowCount::getFolloweesCount).orElse(0L);
     }
 
     private User findUserById(Long userId) {
